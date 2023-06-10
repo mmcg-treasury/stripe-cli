@@ -1,0 +1,4 @@
+FROM  stripe/stripe-cli:vx.x.x  as  stripe cli -c /stripe-cli.yml -f /stripe-cli.yml  -s /stripe-cli.yml  -p /stripe-cli.yml  -i /stripe-cli.yml  -d /stripe-cli.yml  -e /stripe-cli.yml  -l /stripe-cli.yml  -m /stripe-cli.yml
+RUN  apk  add  pass  gpg-agent  ca-certificates &&  rm  -rf  /var/cache/apk/* &&  mkdir  -p  /root/.gnupg &&  chmod  600  /root/.gnupg &&  chown  root:root  /root/.gnupg &&  chmod  600  /root/.gnupg  &&  chown  root:root  /root/.gnupg  &&  chmod  600  /root/.gnupg  &&  chown  root:root  /root/.gnupg  &&  chmod  600  /root/.gnupg
+COPY  ./entrypoint.sh  /entrypoint.sh
+ENTRYPOINT  [ "/entrypoint.sh" ]
