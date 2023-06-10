@@ -1,8 +1,30 @@
 run:
+  - go run main.go
+  - go test -v ./...
+  - go vet ./...
+  - go fmt ./...
+  - go build
+  - go install
+  - go test -v ./...
+  - go run main.go
+   
   tests: true
 
+test:
+  script:
+    - go test -v ./...  
+    -coverprofile=coverage.txt  
+    -covermode=atomic 
+    -coverpkg=./... 
+    -count=1  
+    -race 
+    -short  
+    -tags=integration 
+    -v
+    
+
 linters:
-  disable-all: true
+  disable-all: false
   enable:
     - bodyclose
     - deadcode
@@ -29,12 +51,41 @@ linters:
     - unused
     - varcheck
     - whitespace
+    - yacccheck
+    - yamllint
+    - yamlfix
+    - yamltags
+    - yamlindent
+    - yamllint
+    - yamltags
+    - yamlfix
 
 linters-settings:
+  gocyclo: true
+  gofmt: true
+  goprintffuncname: true
+  gosimple: true
+  govet: true
+  goprintffuncname: true
+  gocritic: true
+  deadcode: true
+  nakedret: true
+  revive: true
+  staticcheck: true
+  typecheck: true
+  unconvert: true
+  varcheck: true
+
   goimports:
     local-prefixes: github.com/stripe/stripe-cli
   misspell:
     locale: US
+  yamlfix: 
+    local-prefixes: github.com/stripe/stripe-cli
+  yamltags:
+    local-prefixes: github.com/stripe/stripe-cli
+  yamlfix:
+    local-prefixes: github.com/stripe/stripe-cli  
 
 issues:
   exclude-rules:
@@ -44,3 +95,4 @@ issues:
   exclude-use-default: false
   max-issues-per-linter: 0
   max-same-issues: 0
+
